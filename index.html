@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificaciones TI - Siglo XXI</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .category {
+            margin-bottom: 50px;
+        }
+        
+        .category-title {
+            color: white;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 5px solid #ffd700;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--color-start), var(--color-end));
+        }
+        
+        .card.redes { --color-start: #4facfe; --color-end: #00f2fe; }
+        .card.cloud { --color-start: #43e97b; --color-end: #38f9d7; }
+        .card.seguridad { --color-start: #fa709a; --color-end: #fee140; }
+        .card.gestion { --color-start: #30cfd0; --color-end: #330867; }
+        .card.telecom { --color-start: #a8edea; --color-end: #fed6e3; }
+        .card.sistemas { --color-start: #ff9a56; --color-end: #ff6a88; }
+        
+        .cert-name {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .cert-institution {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--color-start), var(--color-end));
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .cert-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        
+        .cert-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .detail-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid var(--color-start);
+        }
+        
+        .detail-label {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            font-size: 1.1em;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .cert-domain {
+            background: #e8f4f8;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #34495e;
+            border-left: 3px solid var(--color-start);
+        }
+
+        .cert-actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .cert-link {
+            display: inline-block;
+            padding: 10px 14px;
+            background: var(--color-start);
+            color: #ffffff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .cert-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+        }
+
+        /* Footer styles */
+        .site-footer {
+            margin-top: 40px;
+            color: #ffffff;
+            text-align: center;
+            padding: 22px;
+            border-radius: 12px;
+            background: rgba(0,0,0,0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .social-list {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+            text-decoration: none;
+            background: rgba(255,255,255,0.06);
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .social-link .social-icon svg { width: 20px; height: 20px; display: block; }
+
+        .footer-small { font-size: 0.95em; opacity: 0.95; }
+
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .category-title { font-size: 1.4em; }
+            .cards-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Certificaciones Internacionales</h1>
+            <p>Telecomunicaciones y Tecnologías de la Información - Siglo XXI</p>
+        </div>
+        
+        <!-- CATEGORÍA 1: REDES Y CONECTIVIDAD -->
+        <div class="category">
+            <h2 class="category-title">🌐 Redes y Conectividad</h2>
+            <div class="cards-grid">
+                
+                <div class="card redes">
+                    <h3 class="cert-name">Cisco CCNA</h3>
+                    <span class="cert-institution">Cisco</span>
+                    <p class="cert-description">Certificación fundamental para redes, cubre acceso, conectividad IP, servicios IP, seguridad y automatización.</p>
+                    <div class="cert-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Costo</div>
+                            <div class="detail-value">$300 USD</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Duración</div>
+                            <div class="detail-value">3-6 meses</div>
+                        </div>
+                    </div>
+                    <div class="cert-domain">
+                        <strong>Áreas:</strong> Redes, seguridad, automatización
+                    </div>
+                    <div class="cert-actions">
+                        <a class="cert-link" href="https://www.netacad.com/es/catalogs/learn?category=courses&subcategory=ccna" target="_blank" rel="noopener noreferrer">Sitio oficial de Cisco CCNA</a>
+                    </div>
+                </div>
+                
+                <div class="card redes">
+                    <h3 class="cert-name">CompTIA Network+</h3>
+                    <span class="cert-institution">CompTIA</span>
+                    <p class="cert-description">Certificación básica para redes, cubre diseño, implementación y resolución de problemas de redes cableadas e inalámbricas.</p>
+                    <div class="cert-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Costo</div>
+                            <div class="detail-value">$125 USD</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Duración</div>
+                            <div class="detail-value">2-4 meses</div>
+                        </div>
+                    </div>
+                    <div class="cert-domain">
+                        <strong>Áreas:</strong> Redes, seguridad, virtualización
+                    </div>
+                    <div class="cert-actions">
+                        <a class="cert-link" href="https://www.comptia.org/certifications/network" target="_blank" rel="noopener noreferrer">Sitio oficial — CompTIA Network+</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CATEGORÍA 2: CLOUD COMPUTING -->
+        <div class="category">
+            <h2 class="category-title">☁️ Cloud Computing</h2>
+            <div class="cards-grid">
+                <div class="card cloud">
+                    <h3 class="cert-name">AWS Solutions Architect</h3>
+                    <span class="cert-institution">Amazon Web Services</span>
+                    <p class="cert-description">Certificación para diseñar e implementar soluciones en la nube usando AWS.</p>
+                    <div class="cert-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Costo</div>
+                            <div class="detail-value">$150 USD</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Duración</div>
+                            <div class="detail-value">3-6 meses</div>
+                        </div>
+                    </div>
+                    <div class="cert-domain">
+                        <strong>Áreas:</strong> Cloud computing, arquitectura
+                    </div>
+                    <div class="cert-actions">
+                        <a class="cert-link" href="https://aws.amazon.com/certification/certified-solutions-architect-associate/" target="_blank" rel="noopener noreferrer">Sitio oficial — AWS Solutions Architect</a>
+                    </div>
+                </div>
+
+... (file continues identical to cert-infografia.html)

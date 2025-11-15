@@ -1,0 +1,9 @@
+{
+  "name": "certificaciones-ti-siglo-xxi",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Infografía de certificaciones TI - sitio estático listo para desplegar en Vercel",
+  "scripts": {
+    "start": "echo 'Sitio estático; desplegar en Vercel o servir con http-server'"
+  }
+}
